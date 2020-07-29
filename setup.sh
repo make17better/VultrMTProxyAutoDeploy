@@ -2,9 +2,9 @@
 echo -n "Please input the Promotion Tag: "
 read tag
 echo "Processing..."
-apt update
-apt upgrade -y
-apt install -y vim git curl build-essential libssl-dev zlib1g-dev
+sudo apt update
+sudo apt upgrade -y
+sudo apt install -y vim git curl build-essential libssl-dev zlib1g-dev
 git clone https://github.com/TelegramMessenger/MTProxy
 cd MTProxy
 make
