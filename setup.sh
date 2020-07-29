@@ -1,5 +1,5 @@
 #!/bin/bash
-echo -n "Please input the Promotion Tag: "
+echo -e "Please input the Promotion Tag:\n"
 read tag
 echo "Processing..."
 apt update
