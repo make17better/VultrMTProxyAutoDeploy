@@ -1,5 +1,4 @@
-# VultrMTProxyAutoDeploy
-MTProxy Deployment Script for Vultr VPS (Debian based only).
+# Automatically Deploy MTProxy in Vultr VPS (Debian based only)
 ## How to use it?
 Execute the following command in terminal
 ```bash
