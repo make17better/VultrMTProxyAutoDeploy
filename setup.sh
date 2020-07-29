@@ -1,4 +1,4 @@
-#！/bin/bash
+#!/bin/bash
 echo -n "Please input the Promotion Tag: "
 read tag
 echo "Processing..."
@@ -14,9 +14,7 @@ curl -s https://core.telegram.org/getProxyConfig -o proxy-multi.conf
 secret=`head -c 16 /dev/urandom | xxd -ps`
 head="ee"
 end="7777772e76756c74722e636f6d"
-echo "Secret: "${secret} >> /root/info.txt
-connect_secret=${head}${secret}${end}
-echo "Connect Secret: ${connect_secret}" >> /root/info.txt
+tls_secret=${head}${secret}${end}
 cat>/etc/systemd/system/MTProxy.service<<EOF
 [Unit]
 Description=MTProxy
@@ -38,4 +36,10 @@ echo "0 4 * * * reboot" >> /tmp/crontab.bak
 crontab /tmp/crontab.bak
 systemctl daemon-reload
 systemctl enable MTProxy.service
-reboot
+ipv4=`curl ifconfig.me`
+echo "IP Address: ${ipv4}"
+echo "Port: 443"
+echo "Secret: ${secret}"
+echo "TLS-Secret: ${tls_secret}"
+echo -e "Direct Link:\ntg://proxy?server=${ipv4}&port=443&secret=${tls_secret}"
+echo "Please reboot before connecting the MTProxy."
